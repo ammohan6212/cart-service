@@ -1,11 +1,23 @@
-const express = require('express');
-const app = express();
-const port = 8080;
+// server.js
 
-app.get('/cart', (req, res) => {
-  res.status(200).send('Welcome to the cart service');
+const express = require("express");
+const cors = require("cors");
+
+const app = express();
+const PORT = 5000;
+
+// Middleware
+app.use(cors()); // Enable CORS for requests from frontend
+app.use(express.json()); // Parse JSON bodies
+
+// Sample message or data for cart
+app.get("/cart", (req, res) => {
+  res.json({ message: "🛒 Your cart is ready!" });
 });
 
-app.listen(port, () => {
-  console.log(`Cart service running on port ${port}`);
+// Optional: add product list or user session endpoints here
+// e.g., app.get("/api/products", ...)
+
+app.listen(PORT, () => {
+  console.log(`✅ Server running at http://localhost:${PORT}`);
 });
