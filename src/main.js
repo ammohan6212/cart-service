@@ -12,7 +12,7 @@ app.use(express.json()); // Parse JSON bodies
 
 // Sample message or data for cart
 app.get("/cart", (req, res) => {
-  res.json({ message: "🛒 Your cart is ready!" });
+  res.json({ message: "🛒 Your cart is ready! and ready to serve the traffc" });
 });
 
 // Optional: add product list or user session endpoints here
