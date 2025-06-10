@@ -25,7 +25,6 @@ pipeline {
             }
         }
         stage("Development Workflow") {
-            agent any
             when {
                 branch 'dev'
             }
