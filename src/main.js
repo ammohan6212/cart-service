@@ -17,7 +17,6 @@ app.get("/cart", (req, res) => {
 
 // Optional: add product list or user session endpoints here
 // e.g., app.get("/api/products", ...)
-
 app.listen(PORT, () => {
   console.log(`✅ Server running at http://localhost:${PORT}`);
 });
