@@ -35,3 +35,15 @@ exports.getCartItems = async (req, res) => {
     res.status(500).json({ message: "Failed to fetch cart items" });
   }
 };
+
+
+exports.removeFromCart = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await CartItem.findByIdAndDelete(id);
+    res.status(200).json({ message: "✅ Item removed from cart" });
+  } catch (err) {
+    console.error("❌ Remove from cart failed:", err);
+    res.status(500).json({ error: "Failed to remove item from cart" });
+  }
+};
