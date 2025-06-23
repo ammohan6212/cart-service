@@ -9,7 +9,12 @@ exports.addToCart = async (req, res) => {
     }
 
     const cartItem = new CartItem({
-      username, productId, name, quantity, price, image_url,
+      username,
+      productId,
+      name,
+      quantity,
+      price,
+      image_url,
     });
 
     await cartItem.save();
@@ -17,5 +22,16 @@ exports.addToCart = async (req, res) => {
   } catch (error) {
     console.error("❌ Add to Cart Error:", error);
     res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+exports.getCartItems = async (req, res) => {
+  try {
+    const { username } = req.params;
+    const items = await CartItem.find({ username }); // ✅ fixed model name
+    res.json({ cartItems: items });
+  } catch (error) {
+    console.error("❌ Fetch Cart Items Error:", error);
+    res.status(500).json({ message: "Failed to fetch cart items" });
   }
 };

@@ -3,7 +3,7 @@ const router = express.Router();
 const { addToCart } = require("../controllers/cartController");
 
 router.post("/add", addToCart);
-
+router.get("/:username", getCartItems);
 
 
 
