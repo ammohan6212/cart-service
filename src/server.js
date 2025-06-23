@@ -12,7 +12,7 @@ app.use(express.json());
 connectDB();
 
 // Routes
-app.use("/cart", cartRoutes);
+app.use("", cartRoutes);
 
 // Start server
 const PORT = process.env.PORT || 5000;
