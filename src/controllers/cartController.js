@@ -47,3 +47,35 @@ exports.removeFromCart = async (req, res) => {
     res.status(500).json({ error: "Failed to remove item from cart" });
   }
 };
+
+
+exports.updateQuantity = async (req, res) => {
+  try {
+    const { itemId } = req.params;
+    const { quantity } = req.body;
+
+    if (!quantity || quantity < 1) {
+      return res.status(400).json({ error: "⚠️ Quantity must be at least 1." });
+    }
+
+    const item = await CartItem.findById(itemId);
+
+    if (!item) {
+      return res.status(404).json({ error: "❌ Cart item not found." });
+    }
+
+    item.quantity = quantity;
+    await item.save();
+
+    res.status(200).json({ message: "✅ Quantity updated", item });
+  } catch (err) {
+    console.error("❌ Error updating quantity:", err);
+    res.status(500).json({ error: "Failed to update quantity" });
+  }
+};
+
+
+
+
+
+
