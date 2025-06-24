@@ -1,8 +1,8 @@
 exports.addToCart = async (req, res) => {
   try {
-    const { username, productId, name, quantity, price, image_url, sellername } = req.body;
+    const { username, productId, name, quantity, price, image_url, seller_name } = req.body;
 
-    if (!username || !productId || !name || !quantity || !price || !sellername) {
+    if (!username || !productId || !name || !quantity || !price || !seller_name) {
       return res.status(400).json({ error: "Missing required fields" });
     }
 
@@ -13,7 +13,7 @@ exports.addToCart = async (req, res) => {
       quantity,
       price,
       image_url,
-      sellername, // ✅ add sellerName field
+      seller_name, // ✅ add sellerName field
     });
 
     await cartItem.save();
