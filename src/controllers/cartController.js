@@ -1,10 +1,8 @@
-const CartItem = require("../models/CartItem");
-
 exports.addToCart = async (req, res) => {
   try {
-    const { username, productId, name, quantity, price, image_url } = req.body;
+    const { username, productId, name, quantity, price, image_url, sellername } = req.body;
 
-    if (!username || !productId || !name || !quantity || !price) {
+    if (!username || !productId || !name || !quantity || !price || !sellername) {
       return res.status(400).json({ error: "Missing required fields" });
     }
 
@@ -15,6 +13,7 @@ exports.addToCart = async (req, res) => {
       quantity,
       price,
       image_url,
+      sellername, // ✅ add sellerName field
     });
 
     await cartItem.save();
@@ -24,6 +23,7 @@ exports.addToCart = async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 };
+
 
 exports.getCartItems = async (req, res) => {
   try {
