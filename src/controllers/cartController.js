@@ -76,8 +76,23 @@ exports.updateQuantity = async (req, res) => {
   }
 };
 
+exports.removeCartItemsByImageUrl = async (req, res) => {
+  try {
+    const { imageUrl } = req.query;
 
+    if (!imageUrl) {
+      return res.status(400).json({ error: "imageUrl query parameter is required" });
+    }
 
+    const result = await CartItem.deleteMany({ image_url: imageUrl });
 
+    if (result.deletedCount === 0) {
+      return res.status(404).json({ message: "No cart items found with given imageUrl" });
+    }
 
-
+    res.status(200).json({ message: `✅ Deleted ${result.deletedCount} cart item(s)` });
+  } catch (err) {
+    console.error("❌ Failed to delete cart items by imageUrl:", err);
+    res.status(500).json({ error: "Failed to delete cart items" });
+  }
+};
