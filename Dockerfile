@@ -1,23 +1,20 @@
-# Use the latest Node 18 Alpine image (pinned minor version to avoid surprises)
+# Use the latest Node 18 Alpine image
 FROM node:18.20-alpine
 
-# Update npm to latest (to fix transitive vulnerabilities in global packages)
-RUN npm install -g npm@latest
+# OPTIONAL: Update npm to latest 10.x if needed
+RUN npm install -g npm@10
 
 # Create app directory
 WORKDIR /app
 
-# Copy package.json and package-lock.json first for better cache
+# Copy package files and install dependencies
 COPY package*.json ./
 
-# Install dependencies
 RUN npm install --production
 
-# Copy app source code
+# Copy source code
 COPY src/ ./src/
 
-# Expose port
+# Expose port and start app
 EXPOSE 8080
-
-# Run the application
 CMD ["npm", "start"]
