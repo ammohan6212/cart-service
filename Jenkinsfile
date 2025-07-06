@@ -90,11 +90,11 @@ pipeline {
                         runComponentTests(env.DETECTED_LANG)
                     }
                 }
-                stage("Building the Application") {
-                    steps {
-                        buildApplication(env.DETECTED_LANG)
-                    }
-                }
+                // stage("Building the Application") {
+                //     steps {
+                //         buildApplication(env.DETECTED_LANG)
+                //     }
+                // }
                 stage("Create Archiving File and push the artifact ") {
                         steps {
                             script {
