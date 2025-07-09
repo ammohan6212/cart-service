@@ -96,3 +96,11 @@ exports.removeCartItemsByImageUrl = async (req, res) => {
     res.status(500).json({ error: "Failed to delete cart items" });
   }
 };
+
+
+exports.checkHealth = (req, res) => {
+  res.status(200).json({
+    status: 'UP',
+    message: 'Cart service is running'
+  });
+};
