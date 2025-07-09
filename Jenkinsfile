@@ -86,11 +86,6 @@ pipeline {
                 //         waitForQualityGate abortPipeline: true
                 //     }
                 // }
-                stage("Building the Application") {
-                    steps {
-                        buildApplication(env.DETECTED_LANG)
-                    }
-                }
                 stage("Mutation Testing and snapshot and component testing at Dev") {
                     steps {
                         runMutationTests(env.DETECTED_LANG)
@@ -396,11 +391,6 @@ pipeline {
                 //         waitForQualityGate abortPipeline: true
                 //     }
                 // }
-                stage("Building the Application") {
-                    steps {
-                        buildApplication(env.DETECTED_LANG)
-                    }
-                }
                 stage("Mutation Testing and snapshot and component testing at Dev") {
                     steps {
                         runMutationTests(env.DETECTED_LANG)
@@ -577,11 +567,6 @@ pipeline {
                 //         waitForQualityGate abortPipeline: true
                 //     }
                 // }
-                stage("Building the Application") {
-                    steps {
-                        buildApplication(env.DETECTED_LANG)
-                    }
-                }
                 stage("Mutation Testing and snapshot and component testing at Dev") {
                     steps {
                         runMutationTests(env.DETECTED_LANG)
