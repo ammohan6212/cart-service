@@ -201,7 +201,7 @@ jobs:
   tests: 
     name: running the multipel tests 
     runs-on: ubuntu-latest 
-    needs: build 
+    needs: sonar-scan
     steps: 
       - name: Checkout code
         uses: actions/checkout@v4
